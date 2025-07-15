@@ -4,9 +4,7 @@ public class Frog {
     private int age;
     private double tongueSpeed;
     private boolean isFroglet;
-    private static String species;
-
-    public static final String DEFAULT_SPECIES = "Rare Pepe";
+    private static String species = "Rare Pepe";
 
     public static final int DEFAULT_AGE = 5;
     public static final double DEFAULT_TONGUE_SPEED = 5;
@@ -18,7 +16,6 @@ public class Frog {
         this.age = age;
         this.tongueSpeed = tongueSpeed;
         this.isFroglet = (this.age > 1 && this.age < 7) ? true : false;
-        this.species = DEFAULT_SPECIES;
     }
 
     public Frog(String name, double ageInYears, double tongueSpeed) {
@@ -82,10 +79,10 @@ public class Frog {
 
     public String toString() {
         if(this.isFroglet == true) {
-            return "My name is " + this.name + " and I’m a rare froglet! I’m " + this.age + " months old and my tongue has a speed of" + this.tongueSpeed + ".";
+            return String.format("My name is %s and I’m a rare froglet! I’m %d months old and my tongue has a speed of %.2f.", this.name, this.age, this.tongueSpeed);
         }
         else {
-            return "My name is " + this.name + " and I’m a rare frog. I’m " + this.age + " months old and my tongue has a speed of" + this.tongueSpeed + ".";
+            return String.format("My name is %s and I’m a rare frog. I’m %d months old and my tongue has a speed of %.2f.", this.name, this.age, this.tongueSpeed);
         }
     }
 
