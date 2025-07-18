@@ -8,6 +8,40 @@ public class Gameplay {
 
         RedAstronaut liam = new RedAstronaut("Liam", 19, "experienced");
         RedAstronaut susPerson = new RedAstronaut("Suspicious Person", 100, "expert");
+
+        liam.sabotage(bob);
+
+        liam.sabotage(susPerson);
+
+        liam.freeze(albert);
+
+        albert.emergencyMeeting();
+        susPerson.emergencyMeeting();
+
+        bob.emergencyMeeting();
+
+        heath.completeTask();
+
+        heath.completeTask();
+
+        heath.completeTask();
+
+        liam.freeze(angel);
+
+        liam.sabotage(bob);
+
+        liam.sabotage(bob);
+
+        liam.freeze(bob);
+
+        //angel.emergencyMeeting();
+
+        liam.sabotage(heath);
+        liam.sabotage(heath);
+        liam.sabotage(heath);
+        liam.sabotage(heath);
+        liam.sabotage(heath);
+        liam.freeze(heath);
     }
 
 }
