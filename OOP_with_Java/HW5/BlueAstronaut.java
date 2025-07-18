@@ -29,7 +29,7 @@ public class BlueAstronaut extends Player implements Crewmate {
         Player[] arr = Player.getPlayers();
 
         for(int i = 0; i < arr.length; i++) {
-            if(arr[i].isFrozen() || arr[i].equals(this)) continue;
+            if(arr[i].isFrozen()) continue;
             if(arr[i].getSusLevel() == maxSus) return; // exit condition where two players have same sus level
             if(arr[i].getSusLevel() > maxSus) {
                 maxSus = arr[i].getSusLevel();

@@ -1,4 +1,4 @@
-public class RedAstronaut extends Player implements Imposter {
+public class RedAstronaut extends Player implements Impostor {
     
     private String skill;
 
@@ -38,7 +38,7 @@ public class RedAstronaut extends Player implements Imposter {
 
     @Override
     public void freeze(Player p) {
-        if(p instanceof Imposter || p.isFrozen() || this.isFrozen()) return; // don't execute if either is frozen already or target is an imposter
+        if(p instanceof Impostor || p.isFrozen() || this.isFrozen()) return; // don't execute if either is frozen already or target is an Impostor
         if(this.getSusLevel() < p.getSusLevel()) p.setFrozen(true);
         else this.setSusLevel(2*this.getSusLevel());
         this.gameOver();
@@ -46,7 +46,7 @@ public class RedAstronaut extends Player implements Imposter {
 
     @Override
     public void sabotage(Player p) {
-        if(p instanceof Imposter || p.isFrozen() || this.isFrozen()) return; // don't execute if either is frozen already or target is an imposter
+        if(p instanceof Impostor || p.isFrozen() || this.isFrozen()) return; // don't execute if either is frozen already or target is an Impostor
         if(this.getSusLevel() < 20) p.setSusLevel((int)(1.5 * p.getSusLevel()));
         else p.setSusLevel((int)(1.25 * p.getSusLevel()));
     }

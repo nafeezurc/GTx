@@ -47,7 +47,7 @@ public abstract class Player implements Comparable<Player> {
      * have an emergency meeting.
      */
     //YOUR CODE HERE
-    abstract void emergencyMeeting();
+    public abstract void emergencyMeeting();
 
     /**
      * This method is the compareTo method from the Comparable interface.
@@ -95,7 +95,7 @@ public abstract class Player implements Comparable<Player> {
         int impostorCount = 0;
         int crewmateCount = 0;
         for (Player p : players) {
-            if (p instanceof Imposter && !p.frozen) {
+            if (p instanceof Impostor && !p.frozen) {
                 impostorCount++;
             } else if (p instanceof Crewmate && !p.frozen) {
                 crewmateCount++;
