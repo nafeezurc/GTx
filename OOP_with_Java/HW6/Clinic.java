@@ -73,6 +73,9 @@ public class Clinic {
             else if(species.equals("Dog")) {
                 patient = new Dog(name, health, painLevel, Double.parseDouble(unique));
             }
+            health = patient.getHealth();
+            painLevel = patient.getPainLevel();
+            patient.speak();
             
         }
     }
