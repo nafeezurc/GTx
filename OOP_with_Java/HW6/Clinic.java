@@ -39,6 +39,33 @@ public class Clinic {
 
             System.out.printf("Consultation for %s the %s at %s.\n", name, species, timeIn);
 
+            double health = 0;
+            int painLevel = 0;
+            boolean validHealth = false;
+            boolean validPain = false;
+            while(!validHealth) {
+                System.out.printf("What is the health of %s?", name);
+                if(input.hasNextDouble()) {
+                    health = input.nextDouble();
+                    validHealth = true;
+                }
+                else {
+                    input.nextLine();
+                    System.out.println("Please enter a number.");
+                }
+            }
+            while(!validPain) {
+                System.out.printf("On a scale of 1 to 10, how much pain is %s in right now?\n", name);
+                if(input.hasNextInt()) {
+                    painLevel = input.nextInt();
+                    validPain = true;
+                }
+                else {
+                    input.nextLine();
+                    System.out.println("Please enter a number.");
+                }
+            }
+            
         }
     }
 
