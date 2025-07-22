@@ -18,21 +18,28 @@ public class Clinic {
         this(new File(fileName));
     }
 
-    public String nextDay(File f) throws FileNotFoundException { // todo
-        Scanner fScan = null;
-
-        fScan = new Scanner(f);
-        
+    public String nextDay(File f) throws FileNotFoundException {
+        day++;
+        Scanner fScan = new Scanner(f);
         Scanner input = new Scanner(System.in);
         String line = null;
-        String[] tokens = null;
+        String res = "";
 
         while(fScan.hasNextLine()) {
             line = fScan.nextLine();
-            tokens = line.split(",");
+            String[] tokens = line.split(",");
+            String name = tokens[0];
+            String species = tokens[1];
+            String unique = tokens[2];
+            String timeIn = tokens[3];
+
+            if(!(species.equals("Cat") || !(species.equals("Dog")))) {
+                throw new InvalidPetException();
+            }
+
+            System.out.printf("Consultation for %s the %s at %s.\n", name, species, timeIn);
 
         }
-
     }
 
 }

@@ -27,22 +27,22 @@ public abstract class Pet {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public double getHealth() {
-        return this.health;
+        return health;
     }
 
     public int getPainLevel() {
-        return this.painLevel;
+        return painLevel;
     }
 
     abstract int treat();
 
     public void speak() {
-        String message = "Hello! My name is " + this.name;
-        if(this.painLevel > 5) {
+        String message = "Hello! My name is " + name;
+        if(painLevel > 5) {
             message = message.toUpperCase();
         }
         System.out.println(message);
@@ -50,8 +50,8 @@ public abstract class Pet {
 
     @Override
     public boolean equals(Object o) {
-        if(!(o instanceof Pet)) return false;
-        if(this.name.equals(((Pet)o).getName())) {
+        if(!(o instanceof Pet) || o == null) return false;
+        if(name.equals(((Pet)o).getName())) {
             return true;
         }
         return false;

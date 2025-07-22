@@ -46,7 +46,7 @@ public class Dog extends Pet {
 
     @Override
     public boolean equals(Object o) {
-        if(!(o instanceof Dog)) return false;
+        if(!(o instanceof Dog) || o == null) return false;
         return super.equals(o) && (droolRate == ((Dog)o).getDroolRate()); 
     }
 
