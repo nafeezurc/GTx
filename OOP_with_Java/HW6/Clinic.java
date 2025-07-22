@@ -76,8 +76,25 @@ public class Clinic {
             health = patient.getHealth();
             painLevel = patient.getPainLevel();
             patient.speak();
-            
+            int treatTime = patient.treat();
+            String timeOut = addTime(timeIn, treatTime);
+            res += String.format("%s,%s,%s,Day %d,%s,%s,%s,%d\n", name, species, unique, day, timeIn, timeOut, String.valueOf(health), painLevel);
         }
+        fScan.close();
+        input.close();
+        return res;
+    }
+
+    public String nextDay(String fileName) throws FileNotFoundException {
+        return nextDay(new File(fileName));
+    }
+
+    public boolean addToFile(String patientInfo) {
+
+    }
+
+    private static String addTime(String timeIn, int treatmentTime) {
+        
     }
 
 }
