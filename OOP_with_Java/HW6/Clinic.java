@@ -65,6 +65,14 @@ public class Clinic {
                     System.out.println("Please enter a number.");
                 }
             }
+
+            Pet patient;
+            if(species.equals("Cat")) {
+                patient = new Cat(name, health, painLevel, Integer.parseInt(unique));
+            }
+            else if(species.equals("Dog")) {
+                patient = new Dog(name, health, painLevel, Double.parseDouble(unique));
+            }
             
         }
     }
