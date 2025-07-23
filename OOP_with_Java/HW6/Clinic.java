@@ -98,15 +98,22 @@ public class Clinic {
             fScan = new Scanner(patientFile);
 
         } catch (Exception e) {
-
+            return false;
         } finally {
-            fScan.close();
-            fPrint.close();
+            if(fScan != null) fScan.close();
+            if(fPrint != null) fPrint.close();
         }
     }
 
     private static String addTime(String timeIn, int treatmentTime) {
-
+        int hours = Integer.parseInt(timeIn.substring(0, 2));
+        int minutes = Integer.parseInt(timeIn.substring(2));
+        hours += (int)((minutes + treatmentTime) / 60);
+        minutes = (minutes + treatmentTime) % 60;
+        String res = "";
+        res += hours < 10 ? "0" + hours : hours;
+        res += minutes < 10 ? "0" + minutes : minutes;
+        return res;
     }
 
 }
