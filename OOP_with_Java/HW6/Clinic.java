@@ -37,14 +37,13 @@ public class Clinic {
                 throw new InvalidPetException();
             }
 
-            System.out.printf("Consultation for %s the %s at %s.\n", name, species, timeIn);
+            System.out.printf("Consultation for %s the %s at %s.\n\"What is the health of %s?\n", name, species, timeIn, name);
 
             double health = 0;
             int painLevel = 0;
             boolean validHealth = false;
             boolean validPain = false;
             while(!validHealth) {
-                System.out.printf("What is the health of %s?", name);
                 if(input.hasNextDouble()) {
                     health = input.nextDouble();
                     validHealth = true;
@@ -52,6 +51,7 @@ public class Clinic {
                 else {
                     input.nextLine();
                     System.out.println("Please enter a number.");
+                    System.out.printf("What is the health of %s?\n", name);
                 }
             }
             while(!validPain) {
@@ -73,7 +73,7 @@ public class Clinic {
             else if(species.equals("Dog")) {
                 patient = new Dog(name, health, painLevel, Double.parseDouble(unique));
             }
-            health = patient.getHealth();
+            health = patient.getHealth(); // constructor will have handled values entered outside of valid range, allowing us to get valid values through getters
             painLevel = patient.getPainLevel();
             patient.speak();
             int treatTime = patient.treat();
@@ -90,11 +90,23 @@ public class Clinic {
     }
 
     public boolean addToFile(String patientInfo) {
+        Scanner fScan = null;
+        PrintWriter fPrint = null;
+        String res = "";
 
+        try {
+            fScan = new Scanner(patientFile);
+
+        } catch (Exception e) {
+
+        } finally {
+            fScan.close();
+            fPrint.close();
+        }
     }
 
     private static String addTime(String timeIn, int treatmentTime) {
-        
+
     }
 
 }
