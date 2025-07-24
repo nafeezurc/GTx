@@ -54,8 +54,8 @@ public class Clinic {
                     System.out.printf("What is the health of %s?\n", name);
                 }
             }
+            System.out.printf("On a scale of 1 to 10, how much pain is %s in right now?\n", name);
             while(!validPain) {
-                System.out.printf("On a scale of 1 to 10, how much pain is %s in right now?\n", name);
                 if(input.hasNextInt()) {
                     painLevel = input.nextInt();
                     validPain = true;
@@ -63,6 +63,7 @@ public class Clinic {
                 else {
                     input.nextLine();
                     System.out.println("Please enter a number.");
+                    System.out.printf("On a scale of 1 to 10, how much pain is %s in right now?\n", name);
                 }
             }
 
