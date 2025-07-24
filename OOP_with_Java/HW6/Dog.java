@@ -20,14 +20,16 @@ public class Dog extends Pet {
 
     @Override
     public int treat() {
-        this.heal();
+        int time;
         if(droolRate < 3.5) {
-            return (int) Math.ceil((2*this.getPainLevel())/this.getHealth());
+            time = (int) Math.ceil((2*this.getPainLevel())/this.getHealth());
         }
         else if(droolRate > 7.5) {
-            return (int) Math.ceil(this.getPainLevel()/(2*this.getHealth()));
+            time = (int) Math.ceil(this.getPainLevel()/(2*this.getHealth()));
         }
-        return (int) Math.ceil(this.getPainLevel()/this.getHealth());
+        else time = (int) Math.ceil(this.getPainLevel()/this.getHealth());
+        heal();
+        return time;
     }
 
     @Override
@@ -42,6 +44,7 @@ public class Dog extends Pet {
             }
             i--;
         }
+        System.out.print("\n");
     }
 
     @Override

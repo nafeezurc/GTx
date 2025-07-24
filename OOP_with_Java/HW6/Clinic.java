@@ -33,17 +33,18 @@ public class Clinic {
             String unique = tokens[2];
             String timeIn = tokens[3];
 
-            if(!(species.equals("Cat") || !(species.equals("Dog")))) {
+            if(!(species.equals("Cat") || (species.equals("Dog")))) {
                 throw new InvalidPetException();
             }
 
-            System.out.printf("Consultation for %s the %s at %s.\n\"What is the health of %s?\n", name, species, timeIn, name);
+            System.out.printf("Consultation for %s the %s at %s.\n", name, species, timeIn);
 
             double health = 0;
             int painLevel = 0;
             boolean validHealth = false;
             boolean validPain = false;
             while(!validHealth) {
+                System.out.printf("What is the health of %s?\n", name);
                 if(input.hasNextDouble()) {
                     health = input.nextDouble();
                     validHealth = true;
@@ -51,11 +52,11 @@ public class Clinic {
                 else {
                     input.nextLine();
                     System.out.println("Please enter a number.");
-                    System.out.printf("What is the health of %s?\n", name);
                 }
             }
-            System.out.printf("On a scale of 1 to 10, how much pain is %s in right now?\n", name);
+            
             while(!validPain) {
+                System.out.printf("On a scale of 1 to 10, how much pain is %s in right now?\n", name);
                 if(input.hasNextInt()) {
                     painLevel = input.nextInt();
                     validPain = true;
@@ -63,16 +64,19 @@ public class Clinic {
                 else {
                     input.nextLine();
                     System.out.println("Please enter a number.");
-                    System.out.printf("On a scale of 1 to 10, how much pain is %s in right now?\n", name);
                 }
             }
 
             Pet patient;
+            
             if(species.equals("Cat")) {
                 patient = new Cat(name, health, painLevel, Integer.parseInt(unique));
             }
             else if(species.equals("Dog")) {
                 patient = new Dog(name, health, painLevel, Double.parseDouble(unique));
+            }
+            else {
+                throw new InvalidPetException();
             }
             health = patient.getHealth(); // constructor will have handled values entered outside of valid range, allowing us to get valid values through getters
             painLevel = patient.getPainLevel();
@@ -97,7 +101,26 @@ public class Clinic {
 
         try {
             fScan = new Scanner(patientFile);
+            boolean newPatient = true;
+            int delimIndex = patientInfo.indexOf(",");
+            String name = patientInfo.substring(0, delimIndex);
+            
+            while(fScan.hasNextLine()) {
+                String line = fScan.nextLine();
+                if(line.startsWith(name)) {
+                    newPatient = false;
+                    int nextDelim = patientInfo.indexOf(",", delimIndex + 1);
+                    delimIndex = nextDelim;
+                    line += patientInfo.substring(delimIndex);
+                }
+                res += line + "\n";
+            }
 
+            if(newPatient) res += patientInfo;
+            fScan.close();
+            fPrint = new PrintWriter(patientFile);
+            fPrint.print(res);
+            return true;
         } catch (Exception e) {
             return false;
         } finally {

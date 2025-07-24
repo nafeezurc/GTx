@@ -38,7 +38,7 @@ public abstract class Pet {
         return painLevel;
     }
 
-    abstract int treat();
+    public abstract int treat();
 
     public void speak() {
         String message = "Hello! My name is " + name;

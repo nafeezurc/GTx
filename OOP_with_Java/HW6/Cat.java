@@ -19,14 +19,16 @@ public class Cat extends Pet {
 
     @Override
     public int treat() {
-        this.heal();
-        if(miceCaught < 3) {
-            return (int) Math.ceil((2*this.getPainLevel())/this.getHealth());
+        int time;
+        if(miceCaught < 4) {
+            time = (int) Math.ceil((2*this.getPainLevel())/this.getHealth());
         }
         else if(miceCaught > 7) {
-            return (int) Math.ceil(this.getPainLevel()/(2*this.getHealth()));
+            time = (int) Math.ceil(this.getPainLevel()/(2*this.getHealth()));
         }
-        return (int) Math.ceil(this.getPainLevel()/this.getHealth());
+        else time = (int) Math.ceil(this.getPainLevel()/this.getHealth());
+        heal();
+        return time;
     }
 
     @Override
@@ -41,6 +43,7 @@ public class Cat extends Pet {
             }
             i--;
         }
+        System.out.print("\n");
     }
 
     @Override
