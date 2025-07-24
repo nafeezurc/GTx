@@ -109,8 +109,10 @@ public class Clinic {
                 String line = fScan.nextLine();
                 if(line.startsWith(name)) {
                     newPatient = false;
-                    int nextDelim = patientInfo.indexOf(",", delimIndex + 1);
-                    delimIndex = nextDelim;
+                    for(int i = 0; i < 2; i++) {
+                        int nextDelim = patientInfo.indexOf(",", delimIndex + 1);
+                        delimIndex = nextDelim;
+                    }
                     line += patientInfo.substring(delimIndex);
                 }
                 res += line + "\n";
