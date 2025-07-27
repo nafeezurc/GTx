@@ -33,7 +33,8 @@ public class LinkedList<E> {
     }
 
     public void add(int index, E element) {
-        if(isEmpty()) {
+        if(index < 0) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+        if(isEmpty() && index == 0) {
             head = new Node<E>(element, null);
             size++;
             return;
@@ -43,10 +44,13 @@ public class LinkedList<E> {
             size++;
             return;
         }
+        if(isEmpty()) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+
         Node<E> cur = head;
+        int copy = index;
         while(index > 1) {
             if(cur.next == null) {
-                throw new IndexOutOfBoundsException();
+                throw new IndexOutOfBoundsException("Index out of bounds: " + copy);
             }
             cur = cur.next;
             index--;
@@ -77,11 +81,13 @@ public class LinkedList<E> {
     }
 
     public E get(int index) {
-        if(isEmpty()) throw new IndexOutOfBoundsException();
+        if(index < 0) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+        if(isEmpty()) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         Node<E> cur = head;
+        int copy = index;
         while(index > 0) {
             if(cur.next == null) {
-                throw new IndexOutOfBoundsException();
+                throw new IndexOutOfBoundsException("Index out of bounds: " + copy);
             }
             cur = cur.next;
             index--;
@@ -107,7 +113,8 @@ public class LinkedList<E> {
     }
 
     public E remove(int index) {
-        if(isEmpty()) throw new IndexOutOfBoundsException();
+        if(index < 0) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+        if(isEmpty()) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         if(index == 0) {
             E res = head.data;
             head = head.next;
@@ -115,10 +122,10 @@ public class LinkedList<E> {
             return res;
         }
         Node<E> cur = head;
-        
+        int copy = index;
         while(index > 1) {
             if(cur.next == null) {
-                throw new IndexOutOfBoundsException();
+                throw new IndexOutOfBoundsException("Index out of bounds: " + copy);
             }
             cur = cur.next;
             index--;
@@ -150,12 +157,14 @@ public class LinkedList<E> {
     }
 
     public E set(int index, E element) {
-        if(isEmpty()) throw new IndexOutOfBoundsException();
+        if(index < 0) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+        if(isEmpty()) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
 
         Node<E> cur = head;
+        int copy = index;
         while(index > 0) {
             if(cur.next == null) {
-                throw new IndexOutOfBoundsException();
+                throw new IndexOutOfBoundsException("Index out of bounds: " + copy);
             }
             cur = cur.next;
             index--;
