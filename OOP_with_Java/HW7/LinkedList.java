@@ -33,8 +33,18 @@ public class LinkedList<E> {
     }
 
     public void add(int index, E element) {
+        if(isEmpty()) {
+            head = new Node<E>(element, null);
+            size++;
+            return;
+        }
+        if(index == 0) {
+            head = new Node<E>(element, head);
+            size++;
+            return;
+        }
         Node<E> cur = head;
-        while(index > 0) {
+        while(index > 1) {
             if(cur.next == null) {
                 throw new IndexOutOfBoundsException();
             }
@@ -51,12 +61,12 @@ public class LinkedList<E> {
 
     public boolean contains(Object o) {
         if(isEmpty()) return false;
-        if(!(o instanceof E)) return false;
+        //if(!(o instanceof E)) return false;
 
         boolean found = false;
         Node<E> cur = head;
         while(cur != null && !found) {
-            if(((E)o).equals(cur.data)) {
+            if(o.equals(cur.data)) {
                 found = true;
             }
             else {
@@ -81,11 +91,11 @@ public class LinkedList<E> {
 
     public int indexOf(Object o) {
         if(isEmpty()) return -1;
-        if(!(o instanceof E)) return -1;
+        //if(!(o instanceof E)) return -1;
         int index = 0;
         Node<E> cur = head;
         while(cur != null) {
-            if(((E)o).equals(cur.data)) {
+            if(o.equals(cur.data)) {
                 return index;
             }
             else {
@@ -98,8 +108,14 @@ public class LinkedList<E> {
 
     public E remove(int index) {
         if(isEmpty()) throw new IndexOutOfBoundsException();
-
+        if(index == 0) {
+            E res = head.data;
+            head = head.next;
+            size--;
+            return res;
+        }
         Node<E> cur = head;
+        
         while(index > 1) {
             if(cur.next == null) {
                 throw new IndexOutOfBoundsException();
@@ -115,11 +131,15 @@ public class LinkedList<E> {
 
     public boolean remove(Object o) {
         if(isEmpty()) return false;
-        if(!(o instanceof E)) return false;
-
+        //if(!(o instanceof E)) return false;
+        if(o.equals(head.data)) {
+            head = head.next;
+            size--;
+            return true;
+        }
         Node<E> cur = head;
         while(cur.next != null) {
-            if(((E)o).equals(cur.next.data)) {
+            if(o.equals(cur.next.data)) {
                 cur.next = cur.next.next;
                 size--;
                 return true;
