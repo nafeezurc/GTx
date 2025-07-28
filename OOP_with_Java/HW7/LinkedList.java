@@ -65,7 +65,6 @@ public class LinkedList<E> {
 
     public boolean contains(Object o) {
         if(isEmpty()) return false;
-        //if(!(o instanceof E)) return false;
 
         boolean found = false;
         Node<E> cur = head;
