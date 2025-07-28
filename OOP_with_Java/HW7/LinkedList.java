@@ -70,11 +70,21 @@ public class LinkedList<E> {
         boolean found = false;
         Node<E> cur = head;
         while(cur != null && !found) {
-            if(o.equals(cur.data)) {
-                found = true;
+            if(o != null) {
+                if(o.equals(cur.data)) {
+                    found = true;
+                }
+                else {
+                    cur = cur.next;
+                }
             }
             else {
-                cur = cur.next;
+                if(cur.data == null) {
+                    found = true;
+                }
+                else {
+                    cur = cur.next;
+                }
             }
         }
         return found;
