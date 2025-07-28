@@ -65,7 +65,6 @@ public class LinkedList<E> {
 
     public boolean contains(Object o) {
         if(isEmpty()) return false;
-        //if(!(o instanceof E)) return false;
 
         boolean found = false;
         Node<E> cur = head;
@@ -107,16 +106,26 @@ public class LinkedList<E> {
 
     public int indexOf(Object o) {
         if(isEmpty()) return -1;
-        //if(!(o instanceof E)) return -1;
         int index = 0;
         Node<E> cur = head;
         while(cur != null) {
-            if(o.equals(cur.data)) {
-                return index;
+            if(o != null) {
+                if(o.equals(cur.data)) {
+                    return index;
+                }
+                else {
+                    index++;
+                    cur = cur.next;
+                }
             }
             else {
-                index++;
-                cur = cur.next;
+                if(cur.data == null) {
+                    return index;
+                }
+                else {
+                    index++;
+                    cur = cur.next;
+                }
             }
         }
         return -1;
@@ -125,6 +134,7 @@ public class LinkedList<E> {
     public E remove(int index) {
         if(index < 0) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         if(isEmpty()) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+        if(index > size - 1) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         if(index == 0) {
             E res = head.data;
             head = head.next;
@@ -148,18 +158,26 @@ public class LinkedList<E> {
 
     public boolean remove(Object o) {
         if(isEmpty()) return false;
-        //if(!(o instanceof E)) return false;
-        if(o.equals(head.data)) {
+        if((o != null && o.equals(head.data)) || (o == null && head.data == null)) {
             head = head.next;
             size--;
             return true;
         }
         Node<E> cur = head;
         while(cur.next != null) {
-            if(o.equals(cur.next.data)) {
-                cur.next = cur.next.next;
-                size--;
-                return true;
+            if(o != null) {
+                if(o.equals(cur.next.data)) {
+                    cur.next = cur.next.next;
+                    size--;
+                    return true;
+                }
+            }
+            else {
+                if(cur.next.data == null) {
+                    cur.next = cur.next.next;
+                    size--;
+                    return true;
+                }
             }
             cur = cur.next;
         }
