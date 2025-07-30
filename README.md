@@ -1,2 +1,2 @@
 # GTx
-Georgia Tech Online Coursework
+Georgia Tech Online Coursework through edX
