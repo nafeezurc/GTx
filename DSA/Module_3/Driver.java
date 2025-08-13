@@ -7,7 +7,6 @@ public class Driver {
         ArrayQueue<Integer> aq1 = new ArrayQueue<>();
         System.out.println("Initial size = " + aq1.size());
         
-        /*
         aq1.enqueue(0);
         System.out.println("After adding 0: " + aq1.size());
         System.out.println(Arrays.toString(aq1.getBackingArray()));
@@ -33,11 +32,12 @@ public class Driver {
         System.out.println("After adding another element post dequeue: " + aq1.size());
         System.out.println(Arrays.toString(aq1.getBackingArray()));
 
+        
         aq1.dequeue();
         System.out.println("After trying dequeue again: " + aq1.size());
         System.out.println(Arrays.toString(aq1.getBackingArray()));
 
-
+        
         aq1.dequeue();
         aq1.dequeue();
         aq1.dequeue();
@@ -51,7 +51,7 @@ public class Driver {
         aq1.dequeue();
         System.out.println("After removing the last element: " + aq1.size());
         System.out.println(Arrays.toString(aq1.getBackingArray()));
-        */
+        
         
         /*
         aq1.enqueue(9);
@@ -70,16 +70,14 @@ public class Driver {
         aq1.dequeue();
         System.out.println("Clearing: " + aq1.size());
         System.out.println(Arrays.toString(aq1.getBackingArray()));
-        */
-        aq1.enqueue(0);
-        aq1.enqueue(0);
-        aq1.enqueue(0);
-        aq1.dequeue();
-        aq1.dequeue();
-        aq1.dequeue();
-        System.out.println("Trying failed test case: " + aq1.size());
-        System.out.println(Arrays.toString(aq1.getBackingArray()));
-
+        
+        
+        /*
+        aq1.setFront(3);
+        System.out.println(aq1.getFront());
+        //aq1.setBackingArray(new Integer[]{null, null, null, 3, 4, 5, 6, 7, 8});
+        //aq1.setSize(6);
+        
         aq1.enqueue(0);
         aq1.enqueue(1);
         aq1.enqueue(2);
@@ -89,8 +87,19 @@ public class Driver {
         aq1.enqueue(6);
         aq1.enqueue(7);
         aq1.enqueue(8);
+        System.out.println("Size = " + aq1.size());
         System.out.println(Arrays.toString(aq1.getBackingArray()));
-        
+        aq1.enqueue(9);
+        System.out.println("Size = " + aq1.size());
+        System.out.println(Arrays.toString(aq1.getBackingArray()));
+        aq1.enqueue(10);
+        aq1.enqueue(11);
+        System.out.println("Size = " + aq1.size());
+        System.out.println(Arrays.toString(aq1.getBackingArray()));
+        aq1.enqueue(12);
+        System.out.println("Size = " + aq1.size());
+        System.out.println(Arrays.toString(aq1.getBackingArray()));
+        */
     }
 
 }

@@ -45,21 +45,13 @@ public class ArrayQueue<T> {
     public void enqueue(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if(data == null) throw new IllegalArgumentException("Data cannot be null");
-        int back = front + size;
-        if(back >= backingArray.length) {
-            if(backingArray[0] == null) { // if start of backingArray is empty, we can wrap around
-                back %= backingArray.length;
-            }
-            else { // if the backingArray is full, then we need to expand
-                T[] newArr = (T[]) new Object[backingArray.length*2];
-                for(int i = 0; i < backingArray.length; i++) {
-                    newArr[i] = backingArray[i];
-                }
-                backingArray = newArr;
-            }
+        int back = (front + size) % backingArray.length;
+        if(backingArray[back] != null) {
+            doubleCapacity();
+            back = (front + size) % backingArray.length;
         }
-        backingArray[back] = data;   
-        size++;  
+        backingArray[back] = data;
+        size++;
     }
 
     /**
@@ -82,12 +74,24 @@ public class ArrayQueue<T> {
         if(backingArray[front] == null) throw new NoSuchElementException("Queue is empty");
         T data = backingArray[front];
         backingArray[front] = null;
-        front++;
-        if(front == backingArray.length) {
-            front = 0;
-        }
+        front = (front + 1) % backingArray.length;
+        //if(front == backingArray.length) {
+          //  front = 0;
+        //}
         size--;
         return data;
+    }
+
+    // helper method to expand backingArray by copying elements into an array with double capacity
+    private void doubleCapacity() {
+        T[] newArr = (T[]) new Object[backingArray.length * 2];
+        int saveSize = size;
+        for(int i = 0; i < backingArray.length; i++) {
+            newArr[i] = this.dequeue();
+        }
+        backingArray = newArr;
+        front = 0;
+        size = saveSize;
     }
 
     /**
@@ -114,6 +118,26 @@ public class ArrayQueue<T> {
     public int size() {
         // DO NOT MODIFY THIS METHOD!
         return size;
+    }
+
+
+    // don't submit these
+    public int getFront() {
+        return front;
+    }
+
+    public void setFront(int index) {
+        front = index;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public void setBackingArray(T[] initArr) {
+        for(int i = 0; i < initArr.length; i++) {
+            backingArray[i] = initArr[i];
+        }
     }
 
 }
