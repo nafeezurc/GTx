@@ -75,9 +75,6 @@ public class ArrayQueue<T> {
         T data = backingArray[front];
         backingArray[front] = null;
         front = (front + 1) % backingArray.length;
-        //if(front == backingArray.length) {
-          //  front = 0;
-        //}
         size--;
         return data;
     }
