@@ -12,75 +12,25 @@ public class Driver {
         tree.add(25);
         tree.add(100);
 
-        tree.add(20);
+        tree.add(10);
 
-        tree.remove(15);
+        System.out.println("First pass just filling tree: " + tree.toString());
+        tree.remove(10);
+        tree.remove(25);
+        System.out.println("Removing 10 and 25 from tree: " + tree.toString());
+        
+        tree.add(10);
+        System.out.println("Adding 10 back: " + tree.toString());
+        tree.remove(5);
+        System.out.println("Remove with 1 child case, 5 removed: " + tree.toString());
 
-        BSTNode<Integer> root = tree.getRoot();
-        BSTNode<Integer> parent = root;
-        BSTNode<Integer> left = parent.getLeft() != null ? parent.getLeft() : new BSTNode<Integer>(-1000000000);
-        BSTNode<Integer> right = parent.getRight() != null ? parent.getRight() : new BSTNode<Integer>(-1000000000);
-
-        System.out.printf("Root: " + parent.getData() + "\nLeft: " + left.getData() + "\nRight: " + right.getData() + "\n\n");
-
-        /*
-        System.out.printf("Root: " + parent.getData() + "\nLeft: " + left.getData() + "\nRight: " + right.getData() + "\n\n");
-
+        tree.remove(10);
         tree.add(5);
         tree.add(25);
-        tree.add(100);
-
-        // left subtree first
-        parent = left;
-        left = parent.getLeft() != null ? parent.getLeft() : new BSTNode<Integer>(-1000000000);
-        right = parent.getRight() != null ? parent.getRight() : new BSTNode<Integer>(-1000000000);
-
-        System.out.printf("Parent: " + parent.getData() + "\nLeft: " + left.getData() + "\nRight: " + right.getData() + "\n\n");
-
-        tree.add(10);
-        parent = left;
-        left = parent.getLeft() != null ? parent.getLeft() : new BSTNode<Integer>(-1000000000);
-        right = parent.getRight() != null ? parent.getRight() : new BSTNode<Integer>(-1000000000);
-
-        System.out.printf("Parent: " + parent.getData() + "\nLeft: " + left.getData() + "\nRight: " + right.getData() + "\n\n");
-
-        tree.remove(10);
-        left = parent.getLeft() != null ? parent.getLeft() : new BSTNode<Integer>(-1000000000);
-        right = parent.getRight() != null ? parent.getRight() : new BSTNode<Integer>(-1000000000);
-
-        System.out.printf("Parent: " + parent.getData() + "\nLeft: " + left.getData() + "\nRight: " + right.getData() + "\n\n");
-
-        tree.add(10);
-        tree.remove(5);
-        parent = root.getLeft();
-        left = parent.getLeft() != null ? parent.getLeft() : new BSTNode<Integer>(-1000000000);
-        right = parent.getRight() != null ? parent.getRight() : new BSTNode<Integer>(-1000000000);
-
-        System.out.printf("Parent: " + parent.getData() + "\nLeft: " + left.getData() + "\nRight: " + right.getData() + "\n\n");
-
-        tree.add(5);
-        tree.remove(10);
         tree.add(20);
+        System.out.println("Setting up for 2 child case: " + tree.toString());
         tree.remove(15);
-        parent = root.getLeft();
-        left = parent.getLeft() != null ? parent.getLeft() : new BSTNode<Integer>(-1000000000);
-        right = parent.getRight() != null ? parent.getRight() : new BSTNode<Integer>(-1000000000);
-
-        System.out.printf("Parent: " + parent.getData() + "\nLeft: " + left.getData() + "\nRight: " + right.getData() + "\n\n");
-        */
-
-        //right subtree second
-        parent = root.getRight();
-        left = parent.getLeft() != null ? parent.getLeft() : new BSTNode<Integer>(-1000000000);
-        right = parent.getRight() != null ? parent.getRight() : new BSTNode<Integer>(-1000000000);
-
-        System.out.printf("Parent: " + parent.getData() + "\nLeft: " + left.getData() + "\nRight: " + right.getData() + "\n\n");
-
-        parent = right;
-        left = parent.getLeft() != null ? parent.getLeft() : new BSTNode<Integer>(-1000000000);
-        right = parent.getRight() != null ? parent.getRight() : new BSTNode<Integer>(-1000000000);
-
-        System.out.printf("Parent: " + parent.getData() + "\nLeft: " + left.getData() + "\nRight: " + right.getData() + "\n\n");
+        System.out.println("Removing 15 for 2 child case: " + tree.toString());
     }
 
 }

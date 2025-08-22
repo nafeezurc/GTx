@@ -117,12 +117,13 @@ public class BST<T extends Comparable<? super T>> {
 
     private BSTNode<T> removeSuccessor(BSTNode<T> node, BSTNode<T> dummy) {
         if(node.getLeft() == null) {
-            dummy.setData(node.getData());      
+            dummy.setData(node.getData());
+            return node.getRight();      
         }   
         else {
             node.setLeft(removeSuccessor(node.getLeft(), dummy));
         }
-        return node.getRight();
+        return node;
     }
 
     /**
@@ -149,6 +150,32 @@ public class BST<T extends Comparable<? super T>> {
     public int size() {
         // DO NOT MODIFY THIS METHOD!
         return size;
+    }
+
+    //DO NOT SUBMIT THESE, TESTING PURPOSES ONLY
+    public String toString() {
+        if(root == null) return "empty";
+        StringBuilder sb = new StringBuilder();
+        inOrderToString(root, sb);
+        return sb.toString();
+    }
+
+    private void inOrderToString(BSTNode<T> node, StringBuilder sb) {
+        if(node == null) return;
+
+        sb.append(node.getData());
+
+        if(node.getLeft() == null && node.getRight() == null) return;
+
+        sb.append('(');
+        inOrderToString(node.getLeft(), sb);
+        sb.append(')');
+
+        if(root.getRight() != null) {
+            sb.append('(');
+            inOrderToString(node.getRight(), sb);
+            sb.append(')');
+        }
     }
 
 }
