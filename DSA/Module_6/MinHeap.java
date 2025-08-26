@@ -41,6 +41,26 @@ public class MinHeap<T extends Comparable<? super T>> {
     public void add(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if(data == null) throw new IllegalArgumentException("Data can not be null");
+        if(size + 1 == backingArray.length) { // if we're already at capacity, need to double size of backingArray
+            T[] newArr = (T[]) new Comparable[backingArray.length*2];
+            for(int i = 1; i < backingArray.length; i++) {
+                newArr[i] = backingArray[i];
+            }
+            backingArray = newArr;
+        }
+        size++;
+        backingArray[size] = data;
+        heapifyUp(size);
+    }
+
+    private void heapifyUp(int index) {
+        if(index == 0 || index/2 == 0) return;
+        if(backingArray[index/2].compareTo(backingArray[index]) > 0) {
+            T tmp = backingArray[index/2];
+            backingArray[index/2] = backingArray[index];
+            backingArray[index] = tmp;
+            heapifyUp(index/2 > 0 ? index/2 : 0);
+        }
     }
 
     /**
@@ -55,6 +75,32 @@ public class MinHeap<T extends Comparable<? super T>> {
      */
     public T remove() {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        if(backingArray[1] == null) throw new NoSuchElementException("Heap is empty");
+        T res = backingArray[1];
+        backingArray[1] = backingArray[size];
+        backingArray[size] = null;
+        size--;
+        heapifyDown(1);
+        return res;
+    }
+
+    private void heapifyDown(int index) {
+        int leftIndex = 2*index;
+        int rightIndex = 2*index + 1;
+        if(leftIndex > backingArray.length || backingArray[leftIndex] == null) return;
+        boolean leftOrRight = false; // false means left higher priority, true means right higher priority
+        if(rightIndex < backingArray.length && backingArray[rightIndex] != null) {
+            leftOrRight = backingArray[leftIndex].compareTo(backingArray[rightIndex]) > 0 ? true : false;
+        }
+        int targetIndex = leftOrRight == false ? leftIndex : rightIndex; // sets which child we look at
+        
+        if(backingArray[index].compareTo(backingArray[targetIndex]) < 0) return;
+        else {
+            T tmp = backingArray[targetIndex];
+            backingArray[targetIndex] = backingArray[index];
+            backingArray[index] = tmp;
+            heapifyDown(targetIndex);
+        }
     }
 
     /**
@@ -81,5 +127,14 @@ public class MinHeap<T extends Comparable<? super T>> {
     public int size() {
         // DO NOT MODIFY THIS METHOD!
         return size;
+    }
+    
+    // do not submit these, testing purposes only
+    public void setBackingArray(T[] newArr) {
+        size = 0;
+        backingArray = newArr;
+        for(int i = 0; i < backingArray.length; i++) {
+            if(backingArray[i] != null) size++;
+        }
     }
 }
