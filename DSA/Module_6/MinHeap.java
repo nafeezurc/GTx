@@ -59,7 +59,7 @@ public class MinHeap<T extends Comparable<? super T>> {
             T tmp = backingArray[index/2];
             backingArray[index/2] = backingArray[index];
             backingArray[index] = tmp;
-            heapifyUp(index/2 > 0 ? index/2 : 0);
+            heapifyUp(index/2);
         }
     }
 
