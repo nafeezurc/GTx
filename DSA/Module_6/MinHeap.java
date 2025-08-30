@@ -1,3 +1,5 @@
+package DSA.Module_6;
+
 import java.util.NoSuchElementException;
 
 /**
