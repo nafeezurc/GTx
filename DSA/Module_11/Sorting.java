@@ -111,20 +111,21 @@ public class Sorting {
         if(arr.length <= 1) {
             return;
         }
-        int max = 0;
+        long max = 0L;
         for(int num : arr) {
-            if(Math.abs(num) > max) {
-                max = Math.abs(num);
+            long absNum = (num == Integer.MIN_VALUE) ? Integer.MAX_VALUE : Math.abs(num);
+            if(absNum > max) {
+                max = absNum;
             }
         }
         LinkedList<Integer>[] buckets = new LinkedList[19];
         for(int i = 0; i < 19; i++) {
             buckets[i] = new LinkedList<>();
         }
-        int place = 1;
+        long place = 1L;
         while(max / place > 0) {
             for(int num : arr) {
-                int digit = (num / place) % 10;
+                int digit = (int)((long)num / place) % 10;
                 buckets[digit + 9].add(num);
             }
             int idx = 0;
@@ -133,23 +134,7 @@ public class Sorting {
                     arr[idx++] = buckets[i].removeFirst();
                 }
             }
-            place *= 10;
-        }
-        int[] tmp = new int[arr.length];
-        int idx = 0;
-
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] < 0) {
-                tmp[idx++] = arr[i];
-            }
-        }
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] >= 0) {
-                tmp[idx++] = arr[i];
-            }
-        }
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = tmp[i];
+            place *= 10L;
         }
     }
 }

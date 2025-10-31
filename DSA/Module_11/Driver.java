@@ -8,5 +8,12 @@ public class Driver {
             System.out.print(n + " ");
         }
         System.out.printf("\n");
+
+        int[] arr1 = {-9, Integer.MIN_VALUE, Integer.MIN_VALUE};
+        Sorting.lsdRadixSort(arr1);
+        for(int n : arr1) {
+            System.out.print(n + " ");
+        }
+        System.out.printf("\n");
     }
 }
