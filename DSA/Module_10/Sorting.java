@@ -66,7 +66,7 @@ public class Sorting {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         for(int i = arr.length - 1; i > 0; i--) {
             int maxIdx = 0;
-            for(int j = 1; j < i; j++) {
+            for(int j = 1; j <= i; j++) {
                 if(comparator.compare(arr[j], arr[maxIdx]) > 0) {
                     maxIdx = j;
                 }
